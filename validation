@@ -1,0 +1,37 @@
+app.controller('Controller', function () {
+
+  // Invoke strict mode
+  "use strict";
+
+  // User not allowed to enter negative values
+  $(".no-negatives").keypress(function (event) {
+
+    if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+
+    if (event.which === 45) {
+      event.preventDefault();
+    }
+  });
+
+  $(".int-only").keypress(function (event) {
+
+    if ((event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+
+  //Prevents user from entering numeric value in text field
+  $('.feedback-name').keydown(function (e) {
+    if (e.ctrlKey || e.altKey) {
+      e.preventDefault();
+    } else {
+      var key = e.keyCode;
+
+      if (!((key === 8) || (key === 32) || (key === 9) || (key === 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+        e.preventDefault();
+      }
+    }
+  });
+});
